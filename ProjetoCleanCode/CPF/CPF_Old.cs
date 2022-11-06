@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ProjetoCleanCode.CPF
 {
@@ -12,7 +8,7 @@ namespace ProjetoCleanCode.CPF
         {
             if (str != null)
             {
-                if (string.IsNullOrEmpty(str))
+                if (!string.IsNullOrEmpty(str))
                 {
                     if (str.Length >= 11 || str.Length <= 14)
                     {
@@ -21,9 +17,19 @@ namespace ProjetoCleanCode.CPF
                         str = str.Replace("-", "");
                         str = str.Replace(" ", "");
 
-                        string[] digitosCpf = str.Split("");
+                        char[] digitosCpf = str.ToCharArray();
+                        bool equal = true;
 
-                        if (digitosCpf.Skip(1).All(s => string.Equals(digitosCpf[0], s, StringComparison.InvariantCultureIgnoreCase)))
+                        for (int i = 1; i < digitosCpf.Length - 1; i++)
+                        {
+                            if (digitosCpf[i] != digitosCpf[0])
+                            {
+                                equal = false;
+                                break;
+                            }
+                        }                                                   
+
+                        if (!equal)
                         {
                             try
                             {
