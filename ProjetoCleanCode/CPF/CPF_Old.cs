@@ -47,7 +47,7 @@ namespace ProjetoCleanCode.CPF
                                     // 	return false;
                                     // } else {
 
-                                    digito = int.Parse(str.Substring(nCount - 1, nCount));
+                                    digito = int.Parse(str.Substring(nCount - 1, 1));
                                     d1 = d1 + (11 - nCount) * digito;
 
                                     d2 = d2 + (12 - nCount) * digito;
